@@ -17,7 +17,7 @@ int main() {
     char yearInner[size];
     int i, j;
     printf("\n\nEnter the date i a single line: ( DD-MM-YYYY / DD.MM.YYYY / DD_MM_YYYY ) \n\n");
-    scanf("%[^\n]s",&dateString);
+    scanf("%[^\n]s",dateString);
     printf("\nThe entered date is : \n");
     printf("\n%s\n",dateString);
     j = 0;
