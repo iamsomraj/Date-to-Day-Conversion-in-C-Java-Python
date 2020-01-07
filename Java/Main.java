@@ -12,21 +12,19 @@ class Dayname {
     int m = Integer.parseInt(this.dateString.substring(3, 5));
     int c = Integer.parseInt(this.dateString.substring(6, 8));
     int d = Integer.parseInt(this.dateString.substring(8));
-    System.out.println("\nDate: \n"+k);
-    System.out.println("\nMonth: \n"+m);
-    System.out.printf("\nYear: %d%d\n",c,d);
+    System.out.println("\nDate: \n" + k);
+    System.out.println("\nMonth: \n" + m);
+    System.out.printf("\nYear: %d%d\n", c, d);
     if (m >= 3) {
       m = m - 2;
     } else {
       m = m + 10;
     }
+    int f = k + (int) ((13 * m - 1) / 5) + d + (int) (d / 4) + (int) (c / 4) - (2 * c);
 
-    int f = k + (int) Math.round(Math.floor((13 * m - 1 / 5))) + (int) Math.round(Math.floor(d / 4))
-        + (int) Math.round(Math.floor(c / 4)) - (2 * c);
-
-    String days[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    String days[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
     System.out.println("\nResult:\n");
-    System.out.printf("\nIt was %s on %s\n",days[f%7],this.dateString);
+    System.out.printf("\nIt was %s on %s\n", days[f % 7], this.dateString);
 
   }
 }
