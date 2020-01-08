@@ -1,9 +1,19 @@
 # Date to Day Conversion in C Java Python
-Date to Day Conversion in C Java Python is used to get the specific day from a date. It can also be used to get the month. I have used Zeller's rule to determine the day.
+Date to Day Conversion in C Java Python is used to get the specific day from a date. It can also be used to get the month. I have used Tomohiko Sakamoto’s Algorithm to determine the day.
 
 ## Image
 
 <img src="image.png" style="zoom: 200%;" >
+
+
+
+## Note
+
+Previously, I was using the Zeller's rule. But it was hard to get it right for different languages because of the arithmetic evaluation difference.
+
+Now, I am shifted to Tomohiko Sakamoto’s Algorithm. It is best for programming and does not behave abnormally for different languages. 
+
+Happy coding! 😊
 
 ## Objective
 

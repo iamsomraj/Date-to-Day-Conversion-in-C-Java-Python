@@ -7,24 +7,25 @@ class Dayname {
     this.dateString = input;
   }
 
-  public void getDay() {
-    int k = Integer.parseInt(this.dateString.substring(0, 2));
-    int m = Integer.parseInt(this.dateString.substring(3, 5));
-    int c = Integer.parseInt(this.dateString.substring(6, 8));
-    int d = Integer.parseInt(this.dateString.substring(8));
-    System.out.println("\nDate: \n" + k);
-    System.out.println("\nMonth: \n" + m);
-    System.out.printf("\nYear: %d%d\n", c, d);
-    if (m >= 3) {
-      m = m - 2;
-    } else {
-      m = m + 10;
+  public static int dayOfWeek(int d, int m, int y) {
+    int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+    if (m < 3) {
+      y = y - 1;
     }
-    int f = k + (int) ((13 * m - 1) / 5) + d + (int) (d / 4) + (int) (c / 4) - (2 * c);
+    return (y + y / 4 - y / 100 + y / 400 + t[m - 1] + d) % 7;
+  }
 
+  public void getDay() {
+    int d = Integer.parseInt(this.dateString.substring(0, 2));
+    int m = Integer.parseInt(this.dateString.substring(3, 5));
+    int y = Integer.parseInt(this.dateString.substring(6));
+    System.out.println("\nDate: \n" + d);
+    System.out.println("\nMonth: \n" + m);
+    System.out.printf("\nYear: %d\n", y);
+    int index = dayOfWeek(d, m, y);
     String days[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
     System.out.println("\nResult:\n");
-    System.out.printf("\nIt was %s on %s\n", days[f % 7], this.dateString);
+    System.out.printf("\nIt was %s on %s\n", days[index], this.dateString);
 
   }
 }

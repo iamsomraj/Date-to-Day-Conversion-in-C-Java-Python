@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<math.h>
 
 int stringToNumber(char arr[]) {
     int number = 0;
@@ -8,13 +9,20 @@ int stringToNumber(char arr[]) {
     return number;
 }
 
+int dayofweek(int d, int m, int y) {
+    int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+    if(m < 3) {
+        y--;
+    }
+    return ( y + y/4 - y/100 + y/400 + t[m-1] + d) % 7;
+}
+
 int main() {
     int size = 20;
     char dateString[size];
     char date[size];
     char month[size];
-    char yearOuter[size];
-    char yearInner[size];
+    char year[size];
     int i, j;
     printf("\n\nEnter the date i a single line: ( DD-MM-YYYY / DD.MM.YYYY / DD_MM_YYYY ) \n\n");
     scanf("%[^\n]s",&dateString);
@@ -37,40 +45,31 @@ int main() {
 
 
     j = 6;
-    for(i=0; i<2; i++) {
+    for(i=0; i<4; i++) {
 
-        yearOuter[i] = dateString[j];
+        year[i] = dateString[j];
         j++;
     }
 
-    yearOuter[i] = '\0';
+    year[i] = '\0';
 
 
-    j = 8;
-    for(i=0; i<2; i++) {
 
-        yearInner[i] = dateString[j];
-        j++;
-    }
 
-    yearInner[i] = '\0';
-    int k = stringToNumber(date);
+    int d = stringToNumber(date);
     int m = stringToNumber(month);
-    int c = stringToNumber(yearOuter);
-    int d = stringToNumber(yearInner);
+    int y = stringToNumber(year);
 
-    printf("\nDate : %d\n",k);
+    int ind = dayofweek(d,m,y);
+
+    printf("\nDate : %d\n",d);
     printf("\nMonth : %d\n",m);
-    printf("\nYear: %d%d\n",c,d);
+    printf("\nYear: %d\n",y);
 
-    if ( m >= 3 ) {
-        m = m - 2;
-    } else {
-        m = m + 10;
-    }
-    int f = k + (int)((13*m-1)/5) + d + (int)(d/4) + (int)(c/4) - (2 * c);
+
     char array[7][10] =  { "Sunday", "Monday", "Tuesday","Wednesday", "Thursday", "Friday", "Saturday" } ;
-    printf("\nResult:\n\n\nIt was %s on %s\n\n",array[f%7],dateString);
+
+    printf("\nResult:\n\n\nIt was %s on %s\n\n",array[ind],dateString);
 }
 
 
